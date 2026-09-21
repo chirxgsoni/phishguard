@@ -10,6 +10,7 @@ import ScanNewPage from './pages/ScanNewPage';
 import ScanResultPage from './pages/ScanResultPage';
 import ConnectionsPage from './pages/ConnectionsPage';
 import AgentSettingsPage from './pages/AgentSettingsPage';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 /**
  * Auth-gated route wrapper.
@@ -54,6 +55,7 @@ export default function App() {
             <AppRoutes />
           </main>
         </ErrorBoundary>
+        <SpeedInsights />
       </AuthProvider>
     </BrowserRouter>
   );
