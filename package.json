@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "PhishGuard — Explainable & Autonomous Phishing Threat Detection Platform",
   "private": true,
+  "workspaces": [
+    "frontend"
+  ],
   "scripts": {
     "start": "concurrently -n backend,frontend -c magenta,cyan \"npm run backend\" \"npm run frontend\"",
     "backend": "python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000",
     "frontend": "cd frontend && npm run dev",
-    "build": "cd frontend && npm run build",
+    "build": "npm --prefix frontend run build",
     "test": "python -m pytest tests/ -v"
   },
   "devDependencies": {

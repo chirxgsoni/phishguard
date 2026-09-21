@@ -15,11 +15,22 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     // Check for existing session
-    supabase.auth.getSession().then(({ data: { session: s } }) => {
-      setSession(s);
+    supabase.auth.getSession().then(({ data: { session: s } = {} }) => {
+      setSession(s || null);
       setUser(s?.user ?? null);
       if (s?.access_token) {
         localStorage.setItem('phishguard_session', JSON.stringify(s));
+      }
+      setLoading(false);
+    }).catch((err) => {
+      console.warn('Supabase getSession failed, checking local storage:', err);
+      const raw = localStorage.getItem('phishguard_session');
+      if (raw) {
+        try {
+          const s = JSON.parse(raw);
+          setSession(s);
+          setUser(s?.user ?? null);
+        } catch {}
       }
       setLoading(false);
     });
