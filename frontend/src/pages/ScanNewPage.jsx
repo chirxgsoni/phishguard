@@ -121,21 +121,24 @@ export default function ScanNewPage() {
   const isScanning = submitting && scanId && !finalResult;
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-8">
-      <h1 className="text-2xl font-bold mb-1" style={{ color: 'var(--color-text-primary)' }}>New Scan</h1>
-      <p className="text-sm mb-8" style={{ color: 'var(--color-text-secondary)' }}>
-        Submit suspicious content for 5-layer threat analysis
-      </p>
+    <div className="max-w-2xl mx-auto px-6 py-8 flex flex-col gap-6">
+      {/* ── Header ─────────────────────────────────────── */}
+      <div>
+        <h1 className="text-2xl font-bold mb-1" style={{ color: 'var(--color-text-primary)' }}>New Scan</h1>
+        <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+          Submit suspicious content for 5-layer threat analysis
+        </p>
+      </div>
 
       {/* ── Tabs ────────────────────────────────────────── */}
       {!isScanning && !finalResult && (
-        <>
-          <div className="flex gap-1 mb-6 p-1 rounded-xl" style={{ backgroundColor: 'var(--color-surface)' }}>
+        <div className="flex flex-col gap-6">
+          <div className="flex gap-1 rounded-xl" style={{ backgroundColor: 'var(--color-surface)' }}>
             {tabs.map(t => (
               <button
                 key={t.key}
                 onClick={() => { setActiveTab(t.key); setContent(''); setFile(null); setError(''); }}
-                className="flex items-center gap-1.5 flex-1 justify-center py-2 rounded-lg font-mono text-xs font-medium border-none cursor-pointer transition-colors"
+                className="flex items-center gap-1.5 flex-1 justify-center py-2.5 rounded-lg font-mono text-xs font-medium border-none cursor-pointer transition-colors"
                 style={{
                   backgroundColor: activeTab === t.key ? 'var(--color-accent-dim)' : 'transparent',
                   color: activeTab === t.key ? 'var(--color-accent)' : 'var(--color-text-muted)',
@@ -148,7 +151,7 @@ export default function ScanNewPage() {
           </div>
 
           {/* ── Input Area ──────────────────────────────────── */}
-          <div className="card mb-4" style={{ padding: '1.5rem' }}>
+          <div>
             {isFileTab ? (
               <div
                 onClick={() => fileInputRef.current?.click()}
@@ -157,7 +160,7 @@ export default function ScanNewPage() {
                 className="flex flex-col items-center justify-center py-12 rounded-lg cursor-pointer transition-colors"
                 style={{
                   border: '2px dashed var(--color-border)',
-                  backgroundColor: file ? 'var(--color-accent-dim)' : 'transparent',
+                  backgroundColor: file ? 'var(--color-accent-dim)' : 'var(--color-surface)',
                 }}
               >
                 <Upload size={28} style={{ color: file ? 'var(--color-accent)' : 'var(--color-text-muted)', marginBottom: 8 }} />
@@ -168,7 +171,7 @@ export default function ScanNewPage() {
               </div>
             ) : (
               <textarea
-                rows={activeTab === 'url' ? 3 : 8}
+                rows={activeTab === 'url' ? 3 : 12}
                 placeholder={
                   activeTab === 'url'
                     ? 'Paste a suspicious URL (e.g. https://paypa1.com/verify)'
@@ -177,13 +180,13 @@ export default function ScanNewPage() {
                 value={content}
                 onChange={e => setContent(e.target.value)}
                 className="font-mono text-sm"
-                style={{ resize: 'vertical', minHeight: activeTab === 'url' ? 80 : 180 }}
+                style={{ resize: 'vertical', minHeight: activeTab === 'url' ? 80 : 300 }}
               />
             )}
           </div>
 
           {error && (
-            <div className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-mono mb-4"
+            <div className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-mono"
               style={{ backgroundColor: 'var(--color-risk-high-bg)', color: 'var(--color-risk-high)', border: '1px solid rgba(229,72,77,0.3)' }}
             >
               <AlertCircle size={14} /> {error}
@@ -199,7 +202,7 @@ export default function ScanNewPage() {
             {submitting ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
             {submitting ? 'Analyzing...' : 'Analyze Content'}
           </button>
-        </>
+        </div>
       )}
 
       {/* ── Live Progress ──────────────────────────────── */}

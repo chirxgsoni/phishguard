@@ -85,11 +85,13 @@ export default function Navbar() {
 
             <button
               onClick={signOut}
-              className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-xs font-mono cursor-pointer border-none bg-transparent transition-colors"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-mono cursor-pointer border-none bg-transparent transition-colors hover:text-white"
               style={{ color: 'var(--color-text-muted)' }}
               title="Sign out"
+              aria-label="Sign out"
             >
               <LogOut size={14} />
+              <span>Sign out</span>
             </button>
           </>
         )}
