@@ -58,7 +58,7 @@ export default function LandingPage() {
             Get Started <ArrowRight size={16} />
           </Link>
           <a href="#how-it-works" className="btn-outline no-underline" style={{ padding: '12px 28px', fontSize: '14px' }}>
-            How It Works
+            How It Works <ArrowRight size={16} />
           </a>
         </motion.div>
       </section>
