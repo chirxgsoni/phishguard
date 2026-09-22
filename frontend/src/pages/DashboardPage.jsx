@@ -66,14 +66,9 @@ export default function DashboardPage() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-8">
       {/* ── Header ─────────────────────────────────────── */}
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="text-2xl font-bold" style={{ color: 'var(--color-text-primary)' }}>Dashboard</h1>
-          <p className="text-sm mt-1" style={{ color: 'var(--color-text-secondary)' }}>Threat detection overview</p>
-        </div>
-        <Link to="/scan/new" className="btn-primary no-underline">
-          <Plus size={14} /> New Scan
-        </Link>
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold" style={{ color: 'var(--color-text-primary)' }}>Dashboard</h1>
+        <p className="text-sm mt-1" style={{ color: 'var(--color-text-secondary)' }}>Threat detection overview</p>
       </div>
 
       {/* ── Stat Cards ─────────────────────────────────── */}
@@ -170,7 +165,7 @@ export default function DashboardPage() {
                   tick={{ fontSize: 10, fill: '#6A6A6A', fontFamily: 'var(--font-mono)' }}
                   axisLine={{ stroke: 'rgba(255,255,255,0.06)' }}
                   tickLine={false}
-                  interval="preserveStartEnd"
+                  interval={2}
                 />
                 <YAxis
                   tick={{ fontSize: 10, fill: '#6A6A6A', fontFamily: 'var(--font-mono)' }}
