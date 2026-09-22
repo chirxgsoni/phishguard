@@ -99,7 +99,7 @@ export default function AgentSettingsPage() {
         className="card mb-4"
         style={{ padding: '1.25rem' }}
       >
-        <span className="section-label block mb-3">Model Configuration</span>
+        <span className="section-label normal-case block mb-3">Model Configuration</span>
         <div className="flex flex-col gap-4">
           <div>
             <label className="text-xs font-medium block mb-1.5" style={{ color: 'var(--color-text-secondary)' }}>
@@ -163,7 +163,7 @@ export default function AgentSettingsPage() {
           rows={8}
           value={current.system_instructions}
           onChange={e => handleChange('system_instructions', e.target.value)}
-          className="font-mono text-xs"
+          className="font-mono text-xs overflow-y-auto"
           style={{ resize: 'vertical', minHeight: 120 }}
         />
       </motion.div>
@@ -185,16 +185,23 @@ export default function AgentSettingsPage() {
             { key: 'evidence_cap', label: 'Evidence Cap', max: 200 },
           ].map(w => (
             <div key={w.key}>
-              <label className="text-xs font-medium block mb-1.5" style={{ color: 'var(--color-text-secondary)' }}>
+              <label
+                htmlFor={w.key}
+                className="text-xs font-medium block mb-1.5"
+                style={{ color: 'var(--color-text-secondary)' }}
+              >
                 {w.label}
               </label>
               <input
+                id={w.key}
                 type="number"
                 min="0"
                 max={w.max}
                 value={current.score_weights?.[w.key] ?? 0}
                 onChange={e => handleWeightChange(w.key, e.target.value)}
                 className="font-mono text-sm"
+                aria-label={w.label}
+                required
               />
             </div>
           ))}
@@ -202,20 +209,22 @@ export default function AgentSettingsPage() {
       </motion.div>
 
       {/* ── Save Button ───────────────────────────────── */}
-      <button
-        onClick={handleSave}
-        disabled={saving}
-        className="btn-primary w-full justify-center"
-        style={{ padding: '12px' }}
-      >
-        {saving ? (
-          <><Loader2 size={14} className="animate-spin" /> Saving...</>
-        ) : saved ? (
-          <><CheckCircle size={14} /> Saved!</>
-        ) : (
-          <><Save size={14} /> Save Profile</>
-        )}
-      </button>
+      <div className="px-[21px]">
+        <button
+          onClick={handleSave}
+          disabled={saving}
+          className="btn-primary w-full justify-center"
+          style={{ padding: '12px' }}
+        >
+          {saving ? (
+            <><Loader2 size={14} className="animate-spin" /> Saving...</>
+          ) : saved ? (
+            <><CheckCircle size={14} /> Saved!</>
+          ) : (
+            <><Save size={14} /> Save Profile</>
+          )}
+        </button>
+      </div>
     </div>
   );
 }

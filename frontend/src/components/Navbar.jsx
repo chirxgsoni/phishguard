@@ -58,11 +58,8 @@ export default function Navbar() {
             <Link
               key={to}
               to={to}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium tracking-wide no-underline transition-colors"
-              style={{
-                color: isActive(to) ? 'var(--color-accent)' : 'var(--color-text-secondary)',
-                backgroundColor: isActive(to) ? 'var(--color-accent-dim)' : 'transparent',
-              }}
+              className="nav-link"
+              aria-current={isActive(to) ? 'page' : undefined}
             >
               <Icon size={14} />
               {label}
