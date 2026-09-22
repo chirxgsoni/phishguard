@@ -53,7 +53,7 @@ export default function Navbar() {
 
       {/* Nav Links */}
       {isAuthenticated && (
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 sm:absolute sm:left-1/2 sm:-translate-x-1/2">
           {navLinks.map(({ to, label, Icon }) => (
             <Link
               key={to}

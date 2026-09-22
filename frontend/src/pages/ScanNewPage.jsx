@@ -123,25 +123,25 @@ export default function ScanNewPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-8 flex flex-col gap-6">
       {/* ── Header ─────────────────────────────────────── */}
-      <div>
+      <header>
         <h1 className="text-2xl font-bold mb-1" style={{ color: 'var(--color-text-primary)' }}>New Scan</h1>
         <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
           Submit suspicious content for 5-layer threat analysis
         </p>
-      </div>
+      </header>
 
       {/* ── Tabs ────────────────────────────────────────── */}
       {!isScanning && !finalResult && (
-        <div className="flex flex-col gap-6">
-          <div className="flex gap-1 rounded-xl" style={{ backgroundColor: 'var(--color-surface)' }}>
+        <>
+          <div className="flex gap-1 border-b" style={{ borderColor: 'var(--color-border)' }}>
             {tabs.map(t => (
               <button
                 key={t.key}
                 onClick={() => { setActiveTab(t.key); setContent(''); setFile(null); setError(''); }}
-                className="flex items-center gap-1.5 flex-1 justify-center py-2.5 rounded-lg font-mono text-xs font-medium border-none cursor-pointer transition-colors"
+                className="flex items-center gap-1.5 flex-1 justify-center py-2.5 font-mono text-xs font-medium cursor-pointer transition-colors bg-transparent border-t-0 border-l-0 border-r-0"
                 style={{
-                  backgroundColor: activeTab === t.key ? 'var(--color-accent-dim)' : 'transparent',
                   color: activeTab === t.key ? 'var(--color-accent)' : 'var(--color-text-muted)',
+                  borderBottom: activeTab === t.key ? '2px solid var(--color-accent)' : '2px solid transparent',
                 }}
               >
                 <t.Icon size={13} />
@@ -151,7 +151,7 @@ export default function ScanNewPage() {
           </div>
 
           {/* ── Input Area ──────────────────────────────────── */}
-          <div>
+          <div className="w-full">
             {isFileTab ? (
               <div
                 onClick={() => fileInputRef.current?.click()}
@@ -171,7 +171,7 @@ export default function ScanNewPage() {
               </div>
             ) : (
               <textarea
-                rows={activeTab === 'url' ? 3 : 12}
+                rows={activeTab === 'url' ? 5 : 12}
                 placeholder={
                   activeTab === 'url'
                     ? 'Paste a suspicious URL (e.g. https://paypa1.com/verify)'
@@ -179,8 +179,8 @@ export default function ScanNewPage() {
                 }
                 value={content}
                 onChange={e => setContent(e.target.value)}
-                className="font-mono text-sm"
-                style={{ resize: 'vertical', minHeight: activeTab === 'url' ? 80 : 300 }}
+                className="font-mono text-sm w-full block"
+                style={{ resize: 'vertical', minHeight: activeTab === 'url' ? 160 : 300 }}
               />
             )}
           </div>
@@ -202,7 +202,7 @@ export default function ScanNewPage() {
             {submitting ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
             {submitting ? 'Analyzing...' : 'Analyze Content'}
           </button>
-        </div>
+        </>
       )}
 
       {/* ── Live Progress ──────────────────────────────── */}

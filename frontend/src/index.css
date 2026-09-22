@@ -193,6 +193,7 @@ body {
 .nav-link[aria-current="page"] {
   color: var(--color-accent);
   border-bottom-color: var(--color-accent);
+  background-color: transparent;
   border-radius: 0.5rem 0.5rem 0 0;
 }
 
