@@ -74,7 +74,7 @@ export default function Navbar() {
           <>
             {!isActive('/scan/new') && (
               <button
-                className="btn-primary"
+                className="btn-outline"
                 style={{ padding: '6px 14px', fontSize: '11px' }}
                 onClick={() => navigate('/scan/new')}
               >

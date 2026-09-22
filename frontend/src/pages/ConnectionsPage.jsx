@@ -194,8 +194,8 @@ export default function ConnectionsPage() {
       )}
 
       {/* ── Available Providers ────────────────────────── */}
-      <span className="section-label block mb-4">Available Integrations</span>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <span className="section-label normal-case block mb-4">Available Integrations</span>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 integrations-grid">
         {PROVIDERS.map((p, i) => {
           const isConnected = connectedProviders.has(p.id);
           return (
@@ -220,7 +220,7 @@ export default function ConnectionsPage() {
                 <div>
                   <p className="text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>{p.name}</p>
                   {!p.available && (
-                    <span className="text-[10px] font-mono" style={{ color: 'var(--color-text-muted)' }}>Coming Soon</span>
+                    <span className="pill pill-muted normal-case text-xs mt-1">Coming Soon</span>
                   )}
                 </div>
               </div>

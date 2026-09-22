@@ -107,6 +107,23 @@ body {
   border: 1px solid var(--color-border);
   line-height: 1;
 }
+.pill.normal-case {
+  text-transform: none;
+}
+.pill-muted {
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface-alt);
+  border-color: var(--color-border);
+}
+
+@media (min-width: 640px) {
+  .integrations-grid > :nth-child(odd):last-child {
+    grid-column: 1 / -1;
+    max-width: calc(50% - 0.5rem);
+    width: 100%;
+    margin-inline: auto;
+  }
+}
 
 .btn-primary {
   display: inline-flex;
