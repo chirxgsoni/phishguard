@@ -124,8 +124,8 @@ body {
   cursor: pointer;
   transition: background-color 0.15s ease, transform 0.1s ease;
 }
-.btn-primary:hover { background-color: var(--color-accent-hover); }
-.btn-primary:active { transform: scale(0.97); }
+.btn-primary:hover:not(:disabled) { background-color: var(--color-accent-hover); }
+.btn-primary:active:not(:disabled) { transform: scale(0.97); }
 .btn-primary:disabled {
   opacity: 0.4;
   cursor: not-allowed;

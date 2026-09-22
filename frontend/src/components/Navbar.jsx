@@ -75,14 +75,16 @@ export default function Navbar() {
       <div className="flex items-center gap-3">
         {isAuthenticated && (
           <>
-            <button
-              className="btn-primary"
-              style={{ padding: '6px 14px', fontSize: '11px' }}
-              onClick={() => navigate('/scan/new')}
-            >
-              <Plus size={13} />
-              New Scan
-            </button>
+            {!isActive('/scan/new') && (
+              <button
+                className="btn-primary"
+                style={{ padding: '6px 14px', fontSize: '11px' }}
+                onClick={() => navigate('/scan/new')}
+              >
+                <Plus size={13} />
+                New Scan
+              </button>
+            )}
 
             <button
               onClick={signOut}
