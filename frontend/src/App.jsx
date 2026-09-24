@@ -24,13 +24,18 @@ function ProtectedRoute({ children }) {
 }
 
 function AppRoutes() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, loading } = useAuth();
+
+  if (loading) {
+    return <LoadingSpinner message="Authenticating..." />;
+  }
 
   return (
     <Routes>
       {/* Public */}
       <Route path="/" element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <LandingPage />} />
       <Route path="/auth" element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <AuthPage />} />
+      <Route path="/auth/callback" element={<Navigate to="/dashboard" replace />} />
 
       {/* Protected */}
       <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />

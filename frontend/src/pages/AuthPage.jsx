@@ -1,17 +1,44 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Shield, Mail } from 'lucide-react';
 import { useAuth } from '../auth';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 export default function AuthPage() {
-  const { signInWithEmail, signUpWithEmail, signInWithGoogle, signInDemo } = useAuth();
+  const { signInWithEmail, signUpWithEmail, signInWithGoogle, signInDemo, isAuthenticated, loading: authLoading, authError } = useAuth();
   const navigate = useNavigate();
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/dashboard', { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
+
+  // Capture URL errors or context auth errors
+  useEffect(() => {
+    if (authError) {
+      setError(authError);
+    }
+    const searchParams = new URLSearchParams(window.location.search);
+    const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+    const urlErr = searchParams.get('error_description') || searchParams.get('error') ||
+                   hashParams.get('error_description') || hashParams.get('error');
+    if (urlErr) {
+      setError(decodeURIComponent(urlErr.replace(/\+/g, ' ')));
+    }
+  }, [authError]);
+
+  const isOAuthCallback = window.location.search.includes('code=') || window.location.hash.includes('access_token=');
+  if (authLoading && isOAuthCallback) {
+    return <LoadingSpinner message="Completing Google sign-in..." />;
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
