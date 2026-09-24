@@ -66,6 +66,9 @@ class SecurityService:
     def verify_supabase_jwt(self, token: str) -> Dict[str, Any]:
         """Validate and decode a Supabase JWT access token."""
         try:
+            if not token or not isinstance(token, str) or token.count(".") != 2:
+                raise ValueError("Token is malformed (expected 3 dot-separated JWT segments)")
+
             unverified_header = jwt.get_unverified_header(token)
             alg = unverified_header.get("alg", "HS256")
             kid = unverified_header.get("kid")

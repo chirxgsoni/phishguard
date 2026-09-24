@@ -6,7 +6,8 @@ async function getAuthHeaders() {
   if (raw) {
     try {
       const session = JSON.parse(raw);
-      if (session?.access_token) {
+      // Only attach Authorization header if it's a valid JWT string
+      if (session?.access_token && session.access_token !== 'demo-token' && session.access_token.includes('.')) {
         return { Authorization: `Bearer ${session.access_token}` };
       }
     } catch {}
