@@ -25,7 +25,7 @@ from app.models.report import ReportRecord, ReportType
 from app.models.scan import EvidenceItem, Severity
 from app.pipeline.layer0_normalization import NormalizedData
 
-logger = logging.getLogger("phishguard.layer4")
+logger = logging.getLogger("nexus.layer4")
 
 
 def build_sanitized_evidence_bundle(
@@ -76,7 +76,7 @@ def generate_dns_sinkhole(domains: List[str]) -> str:
     """Generate DNS sinkhole hosts entries for malicious domains."""
     if not domains:
         return "# No suspicious external domains identified for sinkholing"
-    lines = ["# PhishGuard Automated DNS Sinkhole Entry"]
+    lines = ["# Nexus Automated DNS Sinkhole Entry"]
     for d in domains:
         lines.append(f"0.0.0.0 {d}")
         lines.append(f"0.0.0.0 *.{d}")
@@ -100,10 +100,10 @@ def generate_suricata_rule(domain: str, sid: int = 1000001) -> str:
     dns_hex_pattern = " ".join(hex_parts) + " |00|"
 
     rule = (
-        f'alert dns $HOME_NET any -> any 53 (msg:"PHISHGUARD Autonomous Defense: Detected Phishing Domain {clean_dom}"; '
+        f'alert dns $HOME_NET any -> any 53 (msg:"NEXUS Autonomous Defense: Detected Phishing Domain {clean_dom}"; '
         f'dns.query; content:"{clean_dom}"; nocase; '
         f'classtype:trojan-activity; sid:{sid}; rev:1; '
-        f'metadata:created_by PhishGuard_SOAR, risk_band HIGH;)'
+        f'metadata:created_by Nexus_SOAR, risk_band HIGH;)'
     )
     return rule
 
@@ -205,20 +205,20 @@ def mock_generate_explanation(evidence_bundle: Dict[str, Any]) -> str:
             reasons.append(f"{e['label']} ('{e['match']}')")
         target_str = f" on domain '{domains[0]}'" if domains else ""
         return (
-            f"PhishGuard analyzed this message and determined it poses a HIGH risk (Score: {score}/100). "
+            f"Nexus analyzed this message and determined it poses a HIGH risk (Score: {score}/100). "
             f"The primary threat indicators include {', '.join(reasons)}{target_str}. "
             f"This communication exhibits deceptive techniques designed to impersonate legitimate services "
             f"and coerce the recipient into taking immediate action without verification."
         )
     elif severity == "MEDIUM":
         return (
-            f"PhishGuard identified suspicious characteristics with a MEDIUM risk score ({score}/100). "
+            f"Nexus identified suspicious characteristics with a MEDIUM risk score ({score}/100). "
             f"The content contains irregular domain structures or persuasive psychological framing. "
             f"While not definitively confirmed as a known malicious campaign, caution is advised before following any links."
         )
     else:
         return (
-            f"PhishGuard assessed this content as LOW risk (Score: {score}/100). "
+            f"Nexus assessed this content as LOW risk (Score: {score}/100). "
             f"No prominent typosquatting, high-risk TLDs, or coercive social engineering patterns were detected."
         )
 
@@ -240,7 +240,7 @@ async def run_layer4_agent(
     )
 
     prompt_to_use = system_prompt or (
-        "You are PhishGuard AI, an elite cybersecurity incident responder and threat analyst. "
+        "You are Nexus AI, an elite cybersecurity incident responder and threat analyst. "
         "You receive ONLY verified, structured JSON evidence extracted by deterministic detection rules. "
         "You NEVER hallucinate indicators not in the evidence bundle. Provide concise, clear, plain-English "
         "explanations of the attack vectors, evaluate risk objectively, and formulate actionable SOAR containment "

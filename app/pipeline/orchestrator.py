@@ -1,5 +1,5 @@
 """
-PhishGuard Pipeline Orchestrator
+Nexus Pipeline Orchestrator
 
 Sequentially executes Layers 0 through 4, streams real-time progress events
 over WebSockets, and persists all evidence and SOAR artifacts to Supabase.
@@ -18,7 +18,7 @@ from app.pipeline.layer2_behavioral import evaluate_layer2
 from app.pipeline.layer3_scorer import compute_risk_score
 from app.pipeline.layer4_agent import run_layer4_agent
 
-logger = logging.getLogger("phishguard.orchestrator")
+logger = logging.getLogger("nexus.orchestrator")
 
 
 async def run_pipeline_orchestrator(

@@ -1,5 +1,5 @@
 """
-PhishGuard Backend — Main FastAPI Application Entry Point.
+Nexus Backend — Main FastAPI Application Entry Point.
 
 Layered, explainable phishing-detection engine with real-time trainable LLM triage agent.
 Exposed via REST + WebSockets for the React frontend and n8n automations.
@@ -30,21 +30,21 @@ logging.basicConfig(
     level=logging.INFO if not settings.DEBUG else logging.DEBUG,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
 )
-logger = logging.getLogger("phishguard.app")
+logger = logging.getLogger("nexus.app")
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Application startup and shutdown hooks."""
-    logger.info("Starting PhishGuard Detection Engine...")
+    logger.info("Starting Nexus Detection Engine...")
     logger.info(f"Environment: {settings.ENVIRONMENT}")
     logger.info(f"Supabase configured: {'Live Cloud' if 'your-project' not in settings.SUPABASE_URL else 'In-Memory Fallback'}")
     yield
-    logger.info("Shutting down PhishGuard Backend.")
+    logger.info("Shutting down Nexus Backend.")
 
 
 app = FastAPI(
-    title="PhishGuard — Explainable & Autonomous Phishing Threat Detection API",
+    title="Nexus — Explainable & Autonomous Phishing Threat Detection API",
     description=(
         "5-Layer deterministic detection pipeline + trainable LLM triage agent. "
         "Every risk score is traceable to concrete, rule-based evidence."

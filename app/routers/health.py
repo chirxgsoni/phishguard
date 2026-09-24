@@ -15,7 +15,7 @@ async def health_check():
     uptime_seconds = (datetime.now(timezone.utc) - _start_time).total_seconds()
     return {
         "status": "healthy",
-        "service": "phishguard-backend",
+        "service": "nexus-backend",
         "version": "1.0.0",
         "environment": settings.ENVIRONMENT,
         "uptime_seconds": round(uptime_seconds, 2),

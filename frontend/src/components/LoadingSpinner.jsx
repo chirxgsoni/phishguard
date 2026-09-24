@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Shield } from 'lucide-react';
 
 /**
- * Full-page loading spinner with PhishGuard branding.
+ * Full-page loading spinner with Nexus branding.
  * Used during auth state resolution and lazy-loaded routes.
  */
 export default function LoadingSpinner({ message = 'Loading...' }) {

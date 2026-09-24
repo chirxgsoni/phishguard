@@ -44,7 +44,7 @@ export default function LandingPage() {
           className="text-lg leading-relaxed max-w-xl mb-10"
           style={{ color: 'var(--color-text-secondary)' }}
         >
-          PhishGuard is an explainable phishing threat detection platform. Every risk score is traceable to
+          Nexus is an explainable phishing threat detection platform. Every risk score is traceable to
           concrete, rule-based evidence — not just "the AI said so."
         </motion.p>
 
@@ -109,7 +109,7 @@ export default function LandingPage() {
           borderTop: '1px solid var(--color-border)',
         }}
       >
-        PhishGuard — Explainable & Autonomous Phishing Threat Detection Platform
+        Nexus — Explainable & Autonomous Phishing Threat Detection Platform
       </footer>
     </div>
   );

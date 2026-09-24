@@ -5,7 +5,7 @@ import logging
 from typing import Any, Dict, List, Set
 from fastapi import WebSocket
 
-logger = logging.getLogger("phishguard.websocket")
+logger = logging.getLogger("nexus.websocket")
 
 
 class WebSocketManager:

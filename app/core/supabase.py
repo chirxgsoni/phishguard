@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 from supabase import create_client, Client
 from app.config import settings
 
-logger = logging.getLogger("phishguard.supabase")
+logger = logging.getLogger("nexus.supabase")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -37,7 +37,7 @@ class InMemoryFallbackStore:
                 "user_id": None,
                 "name": "Standard Security Analyst (Default)",
                 "system_prompt": (
-                    "You are PhishGuard AI, an elite cybersecurity incident responder and threat analyst. "
+                    "You are Nexus AI, an elite cybersecurity incident responder and threat analyst. "
                     "You receive ONLY verified, structured JSON evidence extracted by deterministic detection rules. "
                     "You NEVER hallucinate indicators not in the evidence bundle. Provide concise, clear, plain-English "
                     "explanations of the attack vectors, evaluate risk objectively, and formulate actionable SOAR containment "

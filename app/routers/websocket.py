@@ -4,7 +4,7 @@ import logging
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from app.core.websocket_manager import ws_manager
 
-logger = logging.getLogger("phishguard.websocket_router")
+logger = logging.getLogger("nexus.websocket_router")
 router = APIRouter(tags=["Real-time"])
 
 

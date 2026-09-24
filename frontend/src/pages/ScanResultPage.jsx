@@ -33,7 +33,7 @@ const DEMO_RESULT = {
   severity: 'HIGH',
   status: 'completed',
   recommended_action: 'CRITICAL THREAT: DO NOT CLICK links. Quarantine message immediately, block sender and associated domains.',
-  explanation: 'PhishGuard analyzed this message and determined it poses a HIGH risk (Score: 87/100). The primary threat indicators include typosquatting of PayPal (paypa1.com), subdomain brand impersonation (wellsfargo.com appears in subdomain but real domain is update.xyz), and artificial urgency language demanding action within 24 hours.',
+  explanation: 'Nexus analyzed this message and determined it poses a HIGH risk (Score: 87/100). The primary threat indicators include typosquatting of PayPal (paypa1.com), subdomain brand impersonation (wellsfargo.com appears in subdomain but real domain is update.xyz), and artificial urgency language demanding action within 24 hours.',
   evidence: [
     { id: 'e1', layer: 1, type: 'typosquatting', severity: 'HIGH', human_label: 'Potential typosquatting of PayPal (paypal.com)', raw_match: 'paypa1.com', metadata: { target_brand: 'PayPal', edit_distance: 1 } },
     { id: 'e2', layer: 1, type: 'subdomain_spoofing', severity: 'HIGH', human_label: "Subdomain brand impersonation: 'Wells Fargo' in subdomain, real domain is update.xyz", raw_match: 'wellsfargo.com.update.xyz', metadata: { target_brand: 'Wells Fargo' } },
@@ -281,7 +281,7 @@ export default function ScanResultPage() {
                       const url = URL.createObjectURL(blob);
                       const a = document.createElement('a');
                       a.href = url;
-                      a.download = `phishguard_${r.key}_${scan.scan_id.slice(0, 8)}.txt`;
+                      a.download = `nexus_${r.key}_${scan.scan_id.slice(0, 8)}.txt`;
                       a.click();
                     }}
                     className="btn-outline"

@@ -19,12 +19,12 @@ export function AuthProvider({ children }) {
       setSession(s || null);
       setUser(s?.user ?? null);
       if (s?.access_token) {
-        localStorage.setItem('phishguard_session', JSON.stringify(s));
+        localStorage.setItem('nexus_session', JSON.stringify(s));
       }
       setLoading(false);
     }).catch((err) => {
       console.warn('Supabase getSession failed, checking local storage:', err);
-      const raw = localStorage.getItem('phishguard_session');
+      const raw = localStorage.getItem('nexus_session');
       if (raw) {
         try {
           const s = JSON.parse(raw);
@@ -40,9 +40,9 @@ export function AuthProvider({ children }) {
       setSession(s);
       setUser(s?.user ?? null);
       if (s?.access_token) {
-        localStorage.setItem('phishguard_session', JSON.stringify(s));
+        localStorage.setItem('nexus_session', JSON.stringify(s));
       } else {
-        localStorage.removeItem('phishguard_session');
+        localStorage.removeItem('nexus_session');
       }
     });
 
@@ -72,7 +72,7 @@ export function AuthProvider({ children }) {
 
   async function signOut() {
     await supabase.auth.signOut();
-    localStorage.removeItem('phishguard_session');
+    localStorage.removeItem('nexus_session');
   }
 
   // For demo/dev mode when Supabase is not configured
@@ -81,13 +81,13 @@ export function AuthProvider({ children }) {
       access_token: 'demo-token',
       user: {
         id: '00000000-0000-0000-0000-000000000000',
-        email: 'demo@phishguard.security',
+        email: 'demo@nexus.security',
         user_metadata: { name: 'Demo Analyst' },
       },
     };
     setSession(demoSession);
     setUser(demoSession.user);
-    localStorage.setItem('phishguard_session', JSON.stringify(demoSession));
+    localStorage.setItem('nexus_session', JSON.stringify(demoSession));
   }
 
   const value = {

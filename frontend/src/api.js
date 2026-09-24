@@ -2,7 +2,7 @@ const API_BASE = import.meta.env.VITE_API_URL || '';
 
 async function getAuthHeaders() {
   // Try to get Supabase session token from localStorage
-  const raw = localStorage.getItem('phishguard_session');
+  const raw = localStorage.getItem('nexus_session');
   if (raw) {
     try {
       const session = JSON.parse(raw);
