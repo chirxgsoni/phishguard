@@ -27,7 +27,7 @@ import tldextract
 from app.config import settings
 from app.models.scan import SourceType
 
-logger = logging.getLogger("phishguard.layer0")
+logger = logging.getLogger("nexus.layer0")
 
 # Common URL matching pattern
 URL_REGEX = re.compile(
@@ -108,7 +108,7 @@ async def unshorten_url(
     current_url = url
 
     headers = {
-        "User-Agent": "PhishGuard-ThreatScanner/1.0 (+https://phishguard.security)",
+        "User-Agent": "Nexus-ThreatScanner/1.0 (+https://nexus.security)",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     }
 

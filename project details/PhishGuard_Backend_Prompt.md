@@ -1,4 +1,4 @@
-# PhishGuard — Backend Build Prompt (for Gemini / Antigravity)
+# Nexus — Backend Build Prompt (for Gemini / Antigravity)
 
 ## ART Breakdown
 - **Act as:** Senior backend & security engineer, expert in FastAPI, Python, LLM agent orchestration, and Supabase.

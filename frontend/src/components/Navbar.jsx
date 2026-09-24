@@ -47,7 +47,7 @@ export default function Navbar() {
           <Shield size={18} style={{ color: 'var(--color-accent)' }} />
         </div>
         <span className="font-mono font-bold text-sm tracking-wider" style={{ color: 'var(--color-text-primary)' }}>
-          PHISH<span style={{ color: 'var(--color-accent)' }}>GUARD</span>
+          NEX<span style={{ color: 'var(--color-accent)' }}>US</span>
         </span>
       </Link>
 

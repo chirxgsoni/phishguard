@@ -1,1 +1,1 @@
-"""PhishGuard Backend Test Suite."""
+"""Nexus Backend Test Suite."""

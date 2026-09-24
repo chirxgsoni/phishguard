@@ -1,1 +1,1 @@
-"""PhishGuard 5-Layer Threat Detection Pipeline."""
+"""Nexus 5-Layer Threat Detection Pipeline."""

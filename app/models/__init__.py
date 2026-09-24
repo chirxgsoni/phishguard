@@ -1,1 +1,1 @@
-"""Pydantic schemas and data models for PhishGuard."""
+"""Pydantic schemas and data models for Nexus."""

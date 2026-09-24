@@ -1,1 +1,1 @@
-"""Pluggable App Connectors Package for PhishGuard."""
+"""Pluggable App Connectors Package for Nexus."""

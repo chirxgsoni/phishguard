@@ -1,4 +1,4 @@
-# PhishGuard — n8n Workflow Integration
+# Nexus — n8n Workflow Integration
 
 ## Where n8n fits in the architecture
 

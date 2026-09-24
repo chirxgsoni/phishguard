@@ -17,7 +17,7 @@ import httpx
 from app.config import settings
 from app.connectors.base import BaseConnector, ConnectedMessage
 
-logger = logging.getLogger("phishguard.gmail_connector")
+logger = logging.getLogger("nexus.gmail_connector")
 
 GMAIL_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth"
 GMAIL_TOKEN_URL = "https://oauth2.googleapis.com/token"
@@ -58,7 +58,7 @@ class GmailConnector(BaseConnector):
             logger.warning("GOOGLE_CLIENT_ID not configured; using mock token exchange.")
             return {
                 "access_token": f"mock_access_token_{code[:8]}",
-                "refresh_token": "mock_refresh_token_phishguard",
+                "refresh_token": "mock_refresh_token_nexus",
                 "token_type": "Bearer",
                 "expires_in": 3600,
                 "email": "user@gmail.com",

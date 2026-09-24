@@ -1,4 +1,4 @@
-"""Configuration module for PhishGuard backend using pydantic-settings."""
+"""Configuration module for Nexus backend using pydantic-settings."""
 
 import os
 from typing import Optional
@@ -53,10 +53,10 @@ class Settings(BaseSettings):
         if self.TOKEN_ENCRYPTION_KEY:
             return self.TOKEN_ENCRYPTION_KEY.encode()
         # Fallback for dev/testing so app boots smoothly even before .env is populated
-        dev_key = b"A_DEV_SECRET_KEY_FOR_PHISHGUARD_32B="
+        dev_key = b"A_DEV_SECRET_KEY_FOR_NEXUS_32BYTE="
         # Ensure 32 url-safe base64 bytes:
         import base64
-        padded = base64.urlsafe_b64encode(b"phishguard_default_dev_secret_!"[:32].ljust(32, b"0"))
+        padded = base64.urlsafe_b64encode(b"nexus_default_dev_secret_key_!"[:32].ljust(32, b"0"))
         return padded
 
 

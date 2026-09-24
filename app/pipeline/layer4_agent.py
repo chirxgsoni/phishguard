@@ -122,7 +122,7 @@ def generate_cert_incident_report(
 
     report_lines = [
         "================================================================================",
-        "             PHISHGUARD INCIDENT REPORT — FORMAL THREAT NOTIFICATION            ",
+        "                NEXUS INCIDENT REPORT — FORMAL THREAT NOTIFICATION              ",
         "         Formatted for Submission to APWG / CERT-In / CISA Incident Portals      ",
         "================================================================================",
         f"Incident Reference ID : {scan_id}",

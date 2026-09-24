@@ -1,4 +1,4 @@
-# PhishGuard — Frontend Build Prompt (for Claude)
+# Nexus — Frontend Build Prompt (for Claude)
 
 ## ART Breakdown
 - **Act as:** Senior frontend/product designer specializing in dark, high-contrast security and dev-tool dashboards.

@@ -1,7 +1,7 @@
 {
-  "name": "phishguard",
+  "name": "nexus",
   "version": "1.0.0",
-  "description": "PhishGuard — Explainable & Autonomous Phishing Threat Detection Platform",
+  "description": "Nexus — Explainable & Autonomous Phishing Threat Detection Platform",
   "private": true,
   "workspaces": [
     "frontend"

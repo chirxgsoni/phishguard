@@ -30,7 +30,7 @@ def test_verify_supabase_jwt_with_jwks(monkeypatch):
     token = jwt.encode(
         {
             "sub": "user-uuid-12345",
-            "email": "analyst@phishguard.security",
+            "email": "analyst@nexus.security",
             "role": "authenticated",
             "aud": "authenticated",
         },
@@ -41,7 +41,7 @@ def test_verify_supabase_jwt_with_jwks(monkeypatch):
 
     user = service.verify_supabase_jwt(token)
     assert user["id"] == "user-uuid-12345"
-    assert user["email"] == "analyst@phishguard.security"
+    assert user["email"] == "analyst@nexus.security"
     assert user["role"] == "authenticated"
 
 

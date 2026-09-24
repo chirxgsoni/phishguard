@@ -1,4 +1,4 @@
-# PhishGuard — Backend Engine
+# Nexus — Backend Engine
 
 > **Explainable & Autonomous Phishing Threat Detection Platform**  
 > Layered deterministic security engine + real-time trainable LLM triage agent.
@@ -7,7 +7,7 @@
 
 ## 1. Core Architecture & Philosophy
 
-PhishGuard is **not** an LLM wrapper. A core principle of the engine is that **the LLM is the last layer** — it synthesizes plain-English explanations and orchestrates response actions; it **never** determines risk scores alone. Every risk score is completely traceable to concrete, rule-based forensic evidence.
+Nexus is **not** an LLM wrapper. A core principle of the engine is that **the LLM is the last layer** — it synthesizes plain-English explanations and orchestrates response actions; it **never** determines risk scores alone. Every risk score is completely traceable to concrete, rule-based forensic evidence.
 
 ```
 Incoming Request (Email / URL / QR / Screenshot)
@@ -152,7 +152,7 @@ Clients connect to `/ws/scan/{scan_id}`. The backend broadcasts progressive stat
 {"scan_id": "...", "layer": 1, "status": "complete", "evidence_count": 2}
 {"scan_id": "...", "layer": 2, "status": "complete", "evidence_count": 3}
 {"scan_id": "...", "layer": 3, "status": "complete", "risk_score": 85, "severity": "HIGH"}
-{"scan_id": "...", "layer": 4, "status": "streaming", "partial_explanation": "PhishGuard analyzed this message..."}
+{"scan_id": "...", "layer": 4, "status": "streaming", "partial_explanation": "Nexus analyzed this message..."}
 {"scan_id": "...", "status": "complete", "risk_score": 85, "severity": "HIGH", "recommended_action": "CRITICAL THREAT..."}
 ```
 
@@ -194,5 +194,4 @@ Clients connect to `/ws/scan/{scan_id}`. The backend broadcasts progressive stat
 2. Railway detects Python automatically.
 3. Set the start command to: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 4. Add environment variables under the **Variables** tab.
-#   p h i s h g u a r d  
- 
+#   n e x u s

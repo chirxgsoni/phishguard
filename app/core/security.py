@@ -1,4 +1,4 @@
-"""Cryptographic and Authentication helpers for PhishGuard."""
+"""Cryptographic and Authentication helpers for Nexus."""
 
 import json
 import os

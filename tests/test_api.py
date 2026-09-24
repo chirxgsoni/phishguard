@@ -1,4 +1,4 @@
-"""End-to-end API integration tests for PhishGuard endpoints."""
+"""End-to-end API integration tests for Nexus endpoints."""
 
 import pytest
 from fastapi.testclient import TestClient
@@ -13,7 +13,7 @@ def test_health_endpoint():
     assert response.status_code == 200
     data = response.json()
     assert data["status"] == "healthy"
-    assert data["service"] == "phishguard-backend"
+    assert data["service"] == "nexus-backend"
 
 
 def test_auth_session():

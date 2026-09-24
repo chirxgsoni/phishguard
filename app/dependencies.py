@@ -31,7 +31,7 @@ async def get_current_user(
     # Fallback demo user for public/local scan testing
     return {
         "id": DEFAULT_DEMO_USER_ID,
-        "email": "demo@phishguard.security",
+        "email": "demo@nexus.security",
         "role": "authenticated",
         "app_metadata": {},
         "user_metadata": {"name": "Demo Analyst"},

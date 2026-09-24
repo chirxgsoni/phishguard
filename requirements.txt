@@ -1,4 +1,4 @@
-# PhishGuard Backend Dependencies
+# Nexus Backend Dependencies
 # Python 3.11+
 
 # Web framework & server
