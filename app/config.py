@@ -27,6 +27,7 @@ class Settings(BaseSettings):
     SUPABASE_URL: str = "https://your-project.supabase.co"
     SUPABASE_KEY: str = "your-service-role-key"  # Service role key ONLY, never public anon
     SUPABASE_JWT_SECRET: Optional[str] = None
+    SUPABASE_JWKS: Optional[str] = None
 
     # Encryption key for storing OAuth credentials securely (AES/Fernet)
     # Generate one with: python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
