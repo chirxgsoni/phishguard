@@ -10,6 +10,7 @@ import ScanNewPage from './pages/ScanNewPage';
 import ScanResultPage from './pages/ScanResultPage';
 import ConnectionsPage from './pages/ConnectionsPage';
 import AgentSettingsPage from './pages/AgentSettingsPage';
+import OtpVerificationPage from './pages/OtpVerificationPage';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
 /**
@@ -35,6 +36,8 @@ function AppRoutes() {
       {/* Public */}
       <Route path="/" element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <LandingPage />} />
       <Route path="/auth" element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <AuthPage />} />
+      <Route path="/verify-otp" element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <OtpVerificationPage />} />
+      <Route path="/auth/verify" element={<Navigate to="/verify-otp" replace />} />
       <Route path="/auth/callback" element={<Navigate to="/dashboard" replace />} />
 
       {/* Protected */}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Shield, Mail } from 'lucide-react';
+import { Shield, Mail, KeyRound } from 'lucide-react';
 import { useAuth } from '../auth';
 import LoadingSpinner from '../components/LoadingSpinner';
 
@@ -47,10 +47,13 @@ export default function AuthPage() {
     try {
       if (isSignUp) {
         await signUpWithEmail(email, password);
+        sessionStorage.setItem('nexus_pending_email', email);
+        navigate(`/verify-otp?email=${encodeURIComponent(email)}`, { state: { email } });
+        return;
       } else {
         await signInWithEmail(email, password);
+        navigate('/dashboard');
       }
-      navigate('/dashboard');
     } catch (err) {
       setError(err.message || 'Authentication failed');
     }
@@ -136,6 +139,18 @@ export default function AuthPage() {
             {loading ? 'Loading...' : isSignUp ? 'Sign Up' : 'Sign In'}
           </button>
         </form>
+
+        {/* Have OTP link */}
+        <div className="text-center -mt-1 mb-2">
+          <Link
+            to={email ? `/verify-otp?email=${encodeURIComponent(email)}` : '/verify-otp'}
+            className="inline-flex items-center gap-1.5 text-xs font-mono no-underline hover:underline transition-colors"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
+            <KeyRound size={12} style={{ color: 'var(--color-accent)' }} />
+            <span>Have a verification code? Verify OTP</span>
+          </Link>
+        </div>
 
         {/* Divider */}
         <div className="flex items-center gap-3 my-4">

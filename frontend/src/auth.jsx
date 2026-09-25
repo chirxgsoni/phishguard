@@ -192,6 +192,80 @@ export function AuthProvider({ children }) {
     localStorage.setItem('nexus_session', JSON.stringify(demoSession));
   }
 
+  async function verifyOtp(email, token, type = 'signup') {
+    // If testing in demo mode or demo token entered
+    const isDemoMode = session?.access_token === 'demo-token' || token === '123456' || email?.includes('demo');
+    if (isDemoMode) {
+      const demoSession = {
+        access_token: 'demo-token',
+        user: {
+          id: '00000000-0000-0000-0000-000000000000',
+          email: email || 'demo@nexus.security',
+          user_metadata: { name: (email ? email.split('@')[0] : 'Demo User') },
+        },
+      };
+      setSession(demoSession);
+      setUser(demoSession.user);
+      localStorage.setItem('nexus_session', JSON.stringify(demoSession));
+      return { session: demoSession, user: demoSession.user };
+    }
+
+    let { data, error } = await supabase.auth.verifyOtp({
+      email,
+      token,
+      type: type || 'signup',
+    });
+
+    // Fallback to type: 'email' if signup type is rejected or misconfigured
+    if (error && (type === 'signup' || !type)) {
+      const retry = await supabase.auth.verifyOtp({
+        email,
+        token,
+        type: 'email',
+      });
+      if (!retry.error) {
+        data = retry.data;
+        error = null;
+      }
+    }
+
+    if (error) throw error;
+
+    if (data?.session) {
+      setSession(data.session);
+      setUser(data.session.user);
+      localStorage.setItem('nexus_session', JSON.stringify(data.session));
+    }
+    return data;
+  }
+
+  async function resendOtp(email, type = 'signup') {
+    if (!email) throw new Error('Email address is required');
+
+    if (session?.access_token === 'demo-token' || email?.includes('demo')) {
+      return { message: 'Demo verification code sent: 123456' };
+    }
+
+    let { data, error } = await supabase.auth.resend({
+      email,
+      type: type || 'signup',
+    });
+
+    if (error && (type === 'signup' || !type)) {
+      const retry = await supabase.auth.resend({
+        email,
+        type: 'email',
+      });
+      if (!retry.error) {
+        return retry.data;
+      }
+      throw error;
+    }
+
+    if (error) throw error;
+    return data;
+  }
+
   const value = {
     session,
     user,
@@ -199,6 +273,8 @@ export function AuthProvider({ children }) {
     authError,
     signInWithEmail,
     signUpWithEmail,
+    verifyOtp,
+    resendOtp,
     signInWithGoogle,
     signInDemo,
     signOut,
