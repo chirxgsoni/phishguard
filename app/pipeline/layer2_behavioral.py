@@ -12,7 +12,7 @@ in the original text so the frontend can highlight them inline within Evidence C
 """
 
 import re
-from typing import Dict, List, Pattern, Tuple
+from typing import Any, Dict, List, Tuple
 from app.models.scan import EvidenceItem, Severity
 from app.pipeline.layer0_normalization import NormalizedData
 
@@ -84,7 +84,7 @@ INTENT_PATTERNS: Dict[str, Dict[str, Any]] = {
 }
 
 # Precompile all regex patterns for performance
-COMPILED_PATTERNS: Dict[str, List[Tuple[Pattern, str, Severity]]] = {}
+COMPILED_PATTERNS: Dict[str, List[Tuple[re.Pattern, str, Severity]]] = {}
 for category, data in INTENT_PATTERNS.items():
     COMPILED_PATTERNS[category] = [
         (re.compile(pat, re.IGNORECASE), data["label"], data["severity"])
